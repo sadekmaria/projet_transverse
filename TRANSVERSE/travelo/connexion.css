@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+body{
+    background: url('foot.jpg');
+    background-size: cover;/* for the image to take all the place*/
+    height: 100vh;/*to adapt with the size of the window*/ 
+}
+
+.wrapper{
+    position: absolute;
+    top: 65%;
+    transform: translateY(-50%);
+    /*vertical align*/
+    width: 100%;
+    padding: 0 20px;
+    
+}
+
+.register-form{
+    max-width: 550px;
+    margin:  350px;
+    background: rgba(0,0,0,0.8);
+    padding: 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px;
+    margin-right: 4%;
+}
+
+.register-form .input{
+    width: 48%;
+    margin: 10px 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #77baed;
+    padding: 10px;
+    color: #77baed;
+    width: 100%;
+    text-align: center;
+}
+
+.button{
+    background: #357cd4;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: #357cd4;
+    font-family: "Alex Brush";
+    font-size: 75px; 
+    font-weight: bold;  
+    line-height: 1; 
+    text-align: center;
+    letter-spacing: 5px;
+
+}
+
+
