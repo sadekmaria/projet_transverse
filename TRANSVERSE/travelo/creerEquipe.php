@@ -99,28 +99,28 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
                         <h2 class="contact-title">Remplissez les informations</h2>
                     </div>
                     <div class="col-lg-8">
-                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <form class="form-contact contact_form" action="" method="post" id="contactForm" novalidate="novalidate">
                             <div class="row">
                                 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="nbr" id="nbr" type="nbr" onfocus="this.placeholder = ''" onblur="this.placeholder = 'combien manquent'" placeholder="Combien de joueurs manquent ?">
+                                        <input class="form-control valid" name="nbr" id="nbr" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'combien manquent'" placeholder="Combien de joueurs manquent ?">
                                         
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="ville" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Ville'" placeholder="Dans quelle ville voulez vous jouer ?">
+                                        <input class="form-control valid" name="villeEquipe" id="villeEquipe" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Ville'" placeholder="Dans quelle ville voulez vous jouer ?">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="five" id="five" type="five" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Nom du terrain/five ?">
+                                        <input class="form-control" name="five" id="five" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Nom du terrain/five ?">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="createur" id="createur" type="createur" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" placeholder="createur">
+                                        <input class="form-control" name="createur" id="createur" type="type" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" placeholder="createur">
                                     </div>
                                 </div>
                                 
