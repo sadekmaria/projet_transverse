@@ -7,20 +7,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur send
     {
         
-       if(!empty($_POST['nbr'] AND !empty($_POST['villeEquipe']) AND !empty($_POST['five'])))
+       if(!empty($_POST['nbr'] AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['createur'])))
        {//si tous les champs ont été completer
             
            
            $nbrManquant = htmlspecialchars($_POST['nbr']);
-           $ville = htmlspecialchars($_POST['villeEquipe']);
+           $villeEquipe = htmlspecialchars($_POST['villeEquipe']);
            $five = htmlspecialchars($_POST['five']);
+           $createur = htmlspecialchars($_POST['createur']);
            
-           
-            
-           
+         
           
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(nbrManquant, villeEquipe, five) VALUES(?,?,?)");
-                   $insertmbr->execute(array($nbrManquant, $villeEquipe, $five));
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(nbrManquant, villeEquipe, five, createur) VALUES(?,?,?,?)");
+                   $insertmbr->execute(array($nbrManquant, $villeEquipe, $five, $createur));
                   
                   /* header('Location: .php');*/
                
@@ -117,6 +116,11 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
                                 <div class="col-12">
                                     <div class="form-group">
                                         <input class="form-control" name="five" id="five" type="five" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Nom du terrain/five ?">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="createur" id="createur" type="createur" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" placeholder="createur">
                                     </div>
                                 </div>
                                 
