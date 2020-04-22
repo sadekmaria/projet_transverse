@@ -7,7 +7,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur send
     {
         
-       if(!empty($_POST['nbr'] AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['createur'])))
+       if(!empty($_POST['nbr']) AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['createur']))
        {//si tous les champs ont été completer
             
            
@@ -125,7 +125,7 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
                                 </div>
                                 
                                 <div class="form-group mt-3">
-                                    <input type="submit" class="button button-contactForm boxed-btn" name="envoyer" value="Créer"> 
+                                    <input type="submit" class="button button-contactForm boxed-btn" name="envoyer" value="Creer"> 
                                 </div>
                             </div>
                             
