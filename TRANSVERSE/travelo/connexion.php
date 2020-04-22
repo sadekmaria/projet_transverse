@@ -16,7 +16,7 @@ if(isset($_POST['formconnexion']))
         if($userexist == 1)
         {
             $userinfo = $requser->fetch();
-            $_SESSION['id'] = $userinfo['id'];
+            $_SESSION['membreId'] = $userinfo['membreId'];
             $_SESSION['pseudo'] = $userinfo['pseudo'];
             $_SESSION['email'] = $userinfo['email'];
             $_SESSION['admin'] = $userinfo['admin'];

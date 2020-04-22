@@ -7,21 +7,20 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur send
     {
         
-       if(!empty($_POST['nbr'] AND !empty($_POST['ville']) AND !empty($_POST['five']) AND !empty($_POST['commentaire'])))
+       if(!empty($_POST['nbr'] AND !empty($_POST['villeEquipe']) AND !empty($_POST['five'])))
        {//si tous les champs ont été completer
             
            
            $nbrManquant = htmlspecialchars($_POST['nbr']);
-           $ville = htmlspecialchars($_POST['ville']);
+           $ville = htmlspecialchars($_POST['villeEquipe']);
            $five = htmlspecialchars($_POST['five']);
-           $commentaire = htmlspecialchars($_POST['commentaire']);
            
            
             
            
           
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(nbrManquant, ville, five, commentaire) VALUES(?,?,?,?)");
-                   $insertmbr->execute(array($nbrManquant, $ville, $five, $commentaire));
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(nbrManquant, villeEquipe, five) VALUES(?,?,?)");
+                   $insertmbr->execute(array($nbrManquant, $villeEquipe, $five));
                   
                   /* header('Location: .php');*/
                
@@ -120,11 +119,7 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
                                         <input class="form-control" name="five" id="five" type="five" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Nom du terrain/five ?">
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control w-100" name="commentaire" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Commentaires"></textarea>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group mt-3">
                                     <input type="submit" class="button button-contactForm boxed-btn" name="envoyer" value="Créer"> 
                                 </div>
