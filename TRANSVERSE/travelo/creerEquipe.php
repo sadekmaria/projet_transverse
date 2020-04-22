@@ -18,8 +18,8 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
            
          
           
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(nbrManquant, villeEquipe, five, createur) VALUES(?,?,?,?)");
-                   $insertmbr->execute(array($nbrManquant, $villeEquipe, $five, $createur));
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, createur) VALUES(?,?,?,?)");
+                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $createur));
                   
                   /* header('Location: .php');*/
                
