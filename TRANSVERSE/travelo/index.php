@@ -1,7 +1,8 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
-    
+
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -69,7 +70,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                             <div class="slider_text text-center">
                                 <h3>Près de chez vous</h3>
                                 <p>Faites de nouvelles rencontres</p>
-                                <a href="#" class="boxed-btn3">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                             <div class="slider_text text-center">
                                 <h3>Improvisez</h3>
                                 <p>Créez votre propre match</p>
-                                <a href="#" class="boxed-btn3">Explore Now</a>
                             </div>
                         </div>
                     </div>
