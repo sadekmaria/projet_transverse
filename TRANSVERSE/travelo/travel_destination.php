@@ -2,6 +2,10 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
     
+$query = 'SELECT * FROM equipe';
+
+$equipeAff = $bdd->query($query);
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -98,14 +102,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                                                 
                                               </select>
                                         </div>
+                                        
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="range_slider_wrap">
                                             <span class="range">Prise range</span>
                                             <div id="slider-range"></div>
-                                            <p>
-                                                <input type="text" id="amount" readonly style="border:0; color:#7A838B; font-weight:400;">
-                                            </p>
+                                            <br/>
                                         </div>
                                     </div>
                                 </div>
@@ -123,43 +126,49 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                 
                 
                 
+                
                 <div class="col-lg-8">
                     <div class="row">
+                
+<?php
+                
+                while($equipeData = $equipeAff->fetch()){
+                    
+                    
+                    
+                
+?>
+                
                         <div class="col-lg-6 col-md-6">
                             <div class="single_place">
                                 <div class="thumb">
-                                    <img src="img/place/1.png" alt="">
-                                    <a href="#" class="prise">Recherche ... joueurs</a>
+                                    <img src="img/place/1.jpg" alt="">
+                                    <a href="#" class="prise">Recherche <?php echo $equipeData['nbrManquant'];?> joueurs</a>
                                 </div>
                                 <div class="place_info">
-                                    <a href="destination_details.html"><h3>California</h3></a>
-                                    <p>United State of America</p>
+                                    <a href="destination_details.html"><h3>Dans la ville de <?php echo $equipeData['villeEquipe']?></h3></a>
+                                    <p><?php echo $equipeData['five']?></p>
                                     <div class="rating_days d-flex justify-content-between">
-                                        <span class="d-flex justify-content-center align-items-center">
+                                        <!--<span class="d-flex justify-content-center align-items-center">
                                              <i class="fa fa-star"></i> 
                                              <i class="fa fa-star"></i> 
                                              <i class="fa fa-star"></i> 
                                              <i class="fa fa-star"></i> 
                                              <i class="fa fa-star"></i>
                                              <a href="#">(20 Review)</a>
-                                        </span>
+                                        </span>-->
                                         <div class="days">
-                                            <i class="fa fa-clock-o"></i>
-                                            <a href="#">5 Days</a>
+                                            <i class="fa fa-calendar-o"></i>
+                                            <a href="#"><?php echo $equipeData['dateEquipe']?></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="more_place_btn text-center">
-                                <a class="boxed-btn4" href="#">More Places</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        
+                        <?php } 
+                ?>
+                    
                 
                 
                 

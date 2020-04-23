@@ -1,17 +1,11 @@
-
-
-
 <!doctype html>
-
-
-
 
 <html class="no-js" lang="zxx">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Travelo</title>
+    <title>Social Foot</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,7 +40,8 @@
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
                                     <a href="index.php">
-                                        <img src="img/logo.png" alt="">
+                                        <p><img src="img/logo1.png" alt="">
+                                        SocialFoot</p>
                                     </a>
                                 </div>
                             </div>

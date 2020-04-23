@@ -7,19 +7,20 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur send
     {
         
-       if(!empty($_POST['nbr']) AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['createur']))
+       if(!empty($_POST['nbr']) AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['createur']))
        {//si tous les champs ont été completer
             
            
            $nbrManquant = htmlspecialchars($_POST['nbr']);
            $villeEquipe = htmlspecialchars($_POST['villeEquipe']);
            $five = htmlspecialchars($_POST['five']);
+           $dateEquipe = htmlspecialchars($_POST['dateEquipe']);
            $createur = htmlspecialchars($_POST['createur']);
            
          
           
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, createur) VALUES(?,?,?,?)");
-                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $createur));
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, dateEquipe, createur) VALUES(?,?,?,?,?)");
+                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $dateEquipe, $createur));
                   
                   /* header('Location: .php');*/
                
@@ -116,6 +117,11 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
                                 <div class="col-12">
                                     <div class="form-group">
                                         <input class="form-control" name="five" id="five" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Nom du terrain/five ?">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="dateEquipe" id="dateEquipe" type="date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'A quelle date ?'" placeholder="Nom du terrain/five ?">
                                     </div>
                                 </div>
                                 <div class="col-12">
