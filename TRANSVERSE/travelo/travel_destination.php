@@ -59,9 +59,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                 <div class="col-lg-9">
                     <div class="search_wrap">
                         <form class="search_form" action="#">
-                            <div class="input_field">
-                                <input type="text" placeholder="Combiens êtres vous ?">
-                            </div>
+                            
                             <div class="input_field">
                                 <input id="datepicker" placeholder="Date">
                             </div>
@@ -90,22 +88,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                         <div class="filter_bordered">
                             <div class="filter_inner">
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="single_select">
-                                            <select>
-                                                <option data-display="Combien êtes vous ?">Combien êtes vous ?</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                              </select>
-                                        </div>
-                                    </div>
+                                    
                                     
                                     <div class="col-lg-12">
                                         <div class="single_select">
@@ -136,6 +119,10 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                         </div>
                     </div>
                 </div>
+                
+                
+                
+                
                 <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
@@ -173,6 +160,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                         </div>
                     </div>
                 </div>
+                
+                
+                
             </div>
         </div>
     </div>
