@@ -8,7 +8,7 @@
 }
 
 body{
-    background: url('foot.jpg');
+    background-image:url(img/banner/banner.png);
     background-size: cover;/* for the image to take all the place*/
     height: 100vh;/*to adapt with the size of the window*/ 
 }

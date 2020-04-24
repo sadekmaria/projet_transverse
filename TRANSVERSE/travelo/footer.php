@@ -37,7 +37,8 @@
                         <div class="footer_widget">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="img/footer_logo.png" alt="">
+                                    <p><img src="img/logo1.png" alt="">
+                                    Social Foot</p>
                                 </a>
                             </div>
                             <p>30- 32 Avenue de la République, 94800 Villejuif<br> EFREI PARIS <br>

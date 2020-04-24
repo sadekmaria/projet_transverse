@@ -106,7 +106,7 @@ $equipeAff = $bdd->query($query);
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="range_slider_wrap">
-                                            <span class="range">Prise range</span>
+                                            <span class="range">Proche de chez moi</span>
                                             <div id="slider-range"></div>
                                             <br/>
                                         </div>
@@ -117,7 +117,7 @@ $equipeAff = $bdd->query($query);
                             </div>
 
                             <div class="reset_btn">
-                                <button class="boxed-btn4" type="submit">Reset</button>
+                                <button class="boxed-btn4" type="submit">Filtrer</button>
                             </div>
                         </div>
                     </div>

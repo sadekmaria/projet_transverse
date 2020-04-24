@@ -2,6 +2,9 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 
+$query = 'SELECT * FROM equipe';
+
+$equipeAff = $bdd->query($query);
 
 ?>
 <!doctype html>
@@ -105,7 +108,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                     <div class="search_wrap">
                         <form class="search_form" action="#">
                             <div class="input_field">
-                                <input type="text" placeholder="Combien êtes-vous ?">
+                                <input type="text" placeholder="Où ?">
                             </div>
                             <div class="input_field">
                                 <input id="datepicker" placeholder="Date">
@@ -134,101 +137,60 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                 </div>
             </div>
             <div class="row">
+                
+                <?php
+                
+                while($equipeData = $equipeAff->fetch()){
+                    
+                    
+                    
+                
+?>
+                
                 <div class="col-lg-4 col-md-6">
                     <div class="single_destination">
                         <div class="thumb">
-                            <img src="img/destination/1.png" alt="">
+                            <img src="img/trip/2.png" alt="">
                         </div>
                         <div class="content">
-                            <p class="d-flex align-items-center">Créteil <a href="travel_destination.html">  07 Places</a> </p>
+                            <p class="d-flex align-items-center"><?php echo $equipeData['villeEquipe']?><a href="travel_destination.html">  <?php echo $equipeData['nbrManquant'];?> Places</a> </p>
                             
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="img/destination/2.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Vitry <a href="travel_destination.html">  03 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="img/destination/3.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Neuilly <a href="travel_destination.html">  10 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="img/destination/4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Choisy <a href="travel_destination.html">  02 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="img/destination/5.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Villeneuve <a href="travel_destination.html">  02 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="img/destination/6.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Villejuif <a href="travel_destination.html">  05 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
+                 <?php } 
+                ?>
+                    
+                
             </div>
         </div>
     </div>
     <!-- popular_destination_area_end  -->
 
     <!-- newletter_area_start  -->
-    <div class="newletter_area overlay">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-10">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5">
-                            <div class="newsletter_text">
-                                <h4>Subscribe Our Newsletter</h4>
-                                <p>Subscribe newsletter to get offers and about
-                                    new places to discover.</p>
+        <div class="newletter_area overlay">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-10">
+                        <div class="row align-items-center">
+                            <div class="col-lg-5">
+                                <div class="newsletter_text">
+                                    <h4>Envoyez nous un mail !</h4>
+                                    <p>Pour tout questionnement, envoyez nous un mail, nous vous répondrons dans les plus brefs délais</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="mail_form">
-                                <div class="row no-gutters">
-                                    <div class="col-lg-9 col-md-8">
-                                        <div class="newsletter_field">
-                                            <input type="email" placeholder="Your mail" >
+                            <div class="col-lg-7">
+                                <div class="mail_form">
+                                    <div class="row no-gutters">
+                                        <div class="col-lg-9 col-md-8">
+                                            <div class="newsletter_field">
+                                                <input type="email" placeholder="votre email" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4">
-                                        <div class="newsletter_btn">
-                                            <button class="boxed-btn4 " type="submit" >Subscribe</button>
+                                        <div class="col-lg-3 col-md-4">
+                                            <div class="newsletter_btn">
+                                                <button class="boxed-btn4 " type="submit" >Envoyer</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -238,8 +200,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                 </div>
             </div>
         </div>
-    </div>
-    <!-- newletter_area_end  -->
+        <!-- newletter_area_end  -->
 
     
 
@@ -251,7 +212,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                     <div class="video_wrap text-center">
                         <h3>Enjoy Video</h3>
                         <div class="video_icon">
-                            <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=f59dDEk57i0">
+                            <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=xgrcDuAprRk">
                                 <i class="fa fa-play"></i>
                             </a>
                         </div>
