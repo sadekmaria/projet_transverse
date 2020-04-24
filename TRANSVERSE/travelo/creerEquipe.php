@@ -71,7 +71,17 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
         <![endif]-->
 
     <?php
+    
+    if(isset($_SESSION['admin']) AND $_SESSION['admin'])
+{
+    include("headerAdmin.php");
+    
+}
+else 
+{
     include("header.php");
+}
+    
     ?>
 
      <!-- bradcam_area  -->

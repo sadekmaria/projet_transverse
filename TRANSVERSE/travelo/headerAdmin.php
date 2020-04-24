@@ -50,7 +50,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a class="active" href="index.php">Accueil</a></li>
-                                            <li><a href="about.php">Qui sommes nous ?</a></li>
+                                            <li><a href="verification.php">Vérification</a></li>
                                             <li><a href="#">Equipes <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="travel_destination.php">Equipes existantes</a></li>

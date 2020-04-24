@@ -41,7 +41,17 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
         <![endif]-->
 
     <?php
+    
+    if(isset($_SESSION['admin']) AND $_SESSION['admin'])
+{
+    include("headerAdmin.php");
+    
+}
+else 
+{
     include("header.php");
+}
+    
     ?>
 
     <!-- bradcam_area  -->
@@ -126,7 +136,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
                     <div class="video_wrap text-center">
                         <h3>Enjoy Video</h3>
                         <div class="video_icon">
-                            <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=xgrcDuAprRk">
+                            <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=lHNJhH9Khs0">
                                 <i class="fa fa-play"></i>
                             </a>
                         </div>

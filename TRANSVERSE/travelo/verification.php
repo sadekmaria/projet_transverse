@@ -1,3 +1,5 @@
+
+    
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
@@ -44,7 +46,7 @@ $equipeAff = $bdd->query($query);
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-   <?php
+  <?php
     
     if(isset($_SESSION['admin']) AND $_SESSION['admin'])
 {
@@ -57,6 +59,7 @@ else
 }
     
     ?>
+    
     
    
 
@@ -91,7 +94,16 @@ else
     </div>
     <!-- where_togo_area_end  -->
 
-
+<div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb_70">
+                        <br/><br/><h3>Validez les matchs</h3>
+                        <p>Pour qu'une équipe puisse jouer, vous devez la valider</p>
+                    </div>
+                </div>
+            </div>
+    
+    
     <div class="popular_places_area">
         <div class="container">
             <div class="row">
@@ -115,7 +127,7 @@ else
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="range_slider_wrap">
-                                            <span class="range">Proche de chez moi</span>
+                                            <span class="range">Lieu</span>
                                             <div id="slider-range"></div>
                                             <br/>
                                         </div>
@@ -143,20 +155,46 @@ else
                 
                 while($equipeData = $equipeAff->fetch()){
                     
+                    $x= $equipeData['equipeId'];
                     
+                                        
                     
+                  /*NE MARCHE PAS 
+                  
+                  if(isset($_POST['valide']))
+                    {
+                        
+                       
+$bdd->exec('UPDATE equipe SET valide = 1 WHERE equipeId = $x');
+                    }*/
                 
 ?>
                 
                         <div class="col-lg-6 col-md-6">
                             <div class="single_place">
                                 <div class="thumb">
-                                    <img src="img/place/1.jpg" alt="">
-                                    <a href="#" class="prise"><i class="fa fa-search"></i>Recherche <?php echo $equipeData['nbrManquant'];?> joueurs</a>
+                                    <?php 
+                                        if(isset($equipeData['valide']) AND $equipeData['valide'])
+                                        {
+                                    ?>
+                                            <img src="img/place/1.jpg" alt="">
+                                    <?php
+                                        }else
+                                        {
+                                    ?>
+                                            <img src="img/place/noir.jpg" alt="">
+                                    <?php
+                                        }
+                                    ?>
+                                                                           
+                                                <a href="#" class="prise" name="valide" value="valide"> <i class="fa fa-check-square-o"></i> Valider le match</a>
+                                    
                                 </div>
+                                
                                 <div class="place_info">
                                     <a href="destination_details.html"><h3>Dans la ville de <?php echo $equipeData['villeEquipe']?></h3></a>
-                                    <p><i class="fa fa-map-marker"> </i><?php echo $equipeData['five']?></p>
+                                    <p><i class="fa fa-map-marker"></i> <?php echo $equipeData['five']?></p>
+                                    
                                     <div class="rating_days d-flex justify-content-between">
                                         <!--<span class="d-flex justify-content-center align-items-center">
                                              <i class="fa fa-star"></i> 
@@ -169,9 +207,17 @@ else
                                         <div class="days">
                                             <i class="fa fa-calendar-o"></i>
                                             <a href="#"><?php echo $equipeData['dateEquipe']?></a>
+                                            
                                         </div>
+                                        <div class="days">       
+                                            <i class="fa fa-search"></i>
+                                                <a href="#">Recherche <?php echo $equipeData['nbrManquant'];?> joueurs</a>
+                                            </div>
+                                        
+                                      
                                         
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -221,8 +267,6 @@ else
         </div>
         <!-- newletter_area_end  -->
   
-
-
 
    <?php
     include("footer.php");
@@ -290,3 +334,4 @@ else
 </body>
 
 </html>
+
