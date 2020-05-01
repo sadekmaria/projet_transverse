@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 22 Avril 2020 à 18:55
+-- Généré le :  Ven 01 Mai 2020 à 13:43
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -32,8 +32,22 @@ CREATE TABLE IF NOT EXISTS `equipe` (
   `five` varchar(255) NOT NULL,
   `nbrManquant` int(11) NOT NULL DEFAULT '9',
   `createur` varchar(255) NOT NULL,
+  `dateEquipe` date NOT NULL,
+  `valide` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`equipeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Contenu de la table `equipe`
+--
+
+INSERT INTO `equipe` (`equipeId`, `villeEquipe`, `five`, `nbrManquant`, `createur`, `dateEquipe`, `valide`) VALUES
+(3, 'Sucy en Brie', 'stade de Sucy', 4, 'Nassim', '2020-05-09', 1),
+(4, 'Villejuif', 'LÃ©o Lagrange', 8, 'Emile', '2020-06-04', 0),
+(5, 'CrÃ©teil', 'Stade de CrÃ©teil', 2, 'Nathan', '2020-04-27', 0),
+(6, 'Vitry', 'stade de Vitry', 5, 'Alex', '2020-04-25', 0),
+(7, 'Paris', 'Stade Emile Antoine', 8, 'Moha', '2020-04-26', 0),
+(8, 'Beyrouth', 'stade', 3, 'anoush', '2020-05-16', 0);
 
 -- --------------------------------------------------------
 
@@ -46,21 +60,24 @@ CREATE TABLE IF NOT EXISTS `membre` (
   `pseudo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `mdp` varchar(255) NOT NULL,
-  `admin` int(11) DEFAULT NULL,
+  `admin` int(11) DEFAULT '0',
   `prenom` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `numTel` int(10) NOT NULL,
   `villeMembre` varchar(255) NOT NULL,
   PRIMARY KEY (`membreId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `membre`
 --
 
 INSERT INTO `membre` (`membreId`, `pseudo`, `email`, `mdp`, `admin`, `prenom`, `nom`, `numTel`, `villeMembre`) VALUES
-(1, 'foot', 'foot@gmail.com', '32cb9138ce24c9c5d1917211aec19ba409d84f98', NULL, '', '', 0, ''),
-(2, 'foot', 'foot@d.fr', '32cb9138ce24c9c5d1917211aec19ba409d84f98', NULL, '', '', 0, '');
+(1, 'Mbappe', 'foot@gmail.com', '32cb9138ce24c9c5d1917211aec19ba409d84f98', 0, 'Kylian', 'Mbappé', 655443322, 'Paris'),
+(2, 'foot', 'foot@d.fr', '32cb9138ce24c9c5d1917211aec19ba409d84f98', 0, 'Kylian', 'Mbappe', 655332211, 'Pariss'),
+(3, 'microbe', 'a@a.c', 'c1c93f88d273660be5358cd4ee2df2c2f3f0e8e7', 0, '', '', 0, ''),
+(4, 'microbe', 'maria94370@hotmail.fr', 'c1c93f88d273660be5358cd4ee2df2c2f3f0e8e7', 0, 'd', 'Silver Dress', 8992288, 'Sucy en Brie'),
+(5, 'Admin', 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', 'istrateur', 146464646, 'Villejuif');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

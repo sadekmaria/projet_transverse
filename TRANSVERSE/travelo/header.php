@@ -57,8 +57,9 @@
                                                     <li><a href="creerEquipe.php">Créer une équipe</a></li>
                                                 </ul>
                                             </li>
-                                            
+                                             <li><a href="profil.php">Profil</a></li>
                                             <li><a href="deconnexion.php">Deconnexion</a></li>
+                                           
                                         </ul>
                                     </nav>
                                 </div>

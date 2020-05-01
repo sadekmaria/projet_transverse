@@ -154,19 +154,24 @@ else
 <?php
                 
                 while($equipeData = $equipeAff->fetch()){
-                    
-                    $x= $equipeData['equipeId'];
-                    
-                                        
-                    
-                  /*NE MARCHE PAS 
+                   
+            
                   
-                  if(isset($_POST['valide']))
+                /* NE MARCHE PAS 
+                
+                if(isset($_POST['valide']))
                     {
                         
                        
-$bdd->exec('UPDATE equipe SET valide = 1 WHERE equipeId = $x');
+                        $upateQuery = 'UPDATE equipe SET valide = :valide WHERE equipeId = :equipeId';
+                      $updateReq = $bdd->prepare($updateQuery);
+                      $updateRes->execute(array(
+                      'valide' => 1,
+                      'equipeId' => $equipeData['equipeId']
+                      ));
                     }*/
+                    
+                    
                 
 ?>
                 
