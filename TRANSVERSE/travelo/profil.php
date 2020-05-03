@@ -27,7 +27,7 @@ if(isset($_SESSION['membreId']))
         header('Location: profil.php?id='.$_SESSION['membreId']);
     }
     
-    if(isset($_POST['nvprenom']) AND !empty($_POST['nvprenom']) AND $_POST['nvprenom'] != $user['prenom'])//pareil pr email
+    if(isset($_POST['nvprenom']) AND !empty($_POST['nvprenom']) AND $_POST['nvprenom'] != $user['prenom'])//pareil pr prenom
     {
         $nvprenom = htmlspecialchars($_POST['nvprenom']);
         $insertprenom = $bdd->prepare("UPDATE membre SET prenom = ? WHERE membreId = ?");
@@ -35,7 +35,7 @@ if(isset($_SESSION['membreId']))
         header('Location: profil.php?id='.$_SESSION['membreId']);
     }
     
-    if(isset($_POST['nvnom']) AND !empty($_POST['nvnom']) AND $_POST['nvnom'] != $user['nom'])//pareil pr email
+    if(isset($_POST['nvnom']) AND !empty($_POST['nvnom']) AND $_POST['nvnom'] != $user['nom'])//pareil pr nom
     {
         $nvnom = htmlspecialchars($_POST['nvnom']);
         $insertnom = $bdd->prepare("UPDATE membre SET nom = ? WHERE membreId = ?");
@@ -43,7 +43,7 @@ if(isset($_SESSION['membreId']))
         header('Location: profil.php?id='.$_SESSION['membreId']);
     }
     
-    if(isset($_POST['nvnumTel']) AND !empty($_POST['nvnumTel']) AND $_POST['nvnumTel'] != $user['numTel'])//pareil pr email
+    if(isset($_POST['nvnumTel']) AND !empty($_POST['nvnumTel']) AND $_POST['nvnumTel'] != $user['numTel'])//pareil pr tel
     {
         $nvnumTel = htmlspecialchars($_POST['nvnumTel']);
         $insertnumTel = $bdd->prepare("UPDATE membre SET numTel = ? WHERE membreId = ?");
@@ -51,7 +51,7 @@ if(isset($_SESSION['membreId']))
         header('Location: profil.php?id='.$_SESSION['membreId']);
     }
     
-    if(isset($_POST['nvvilleMembre']) AND !empty($_POST['nvvilleMembre']) AND $_POST['nvvilleMembre'] != $user['villeMembre'])//pareil pr email
+    if(isset($_POST['nvvilleMembre']) AND !empty($_POST['nvvilleMembre']) AND $_POST['nvvilleMembre'] != $user['villeMembre'])//pareil pr ville
     {
         $nvvilleMembre = htmlspecialchars($_POST['nvvilleMembre']);
         $insertvilleMembre = $bdd->prepare("UPDATE membre SET villeMembre = ? WHERE membreId = ?");

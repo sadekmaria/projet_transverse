@@ -3,11 +3,10 @@ session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 
 
-
 if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur send
     {
         
-       if(!empty($_POST['nbr']) AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['createur']))
+       if(!empty($_POST['nbr']) AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['createur']) AND !empty($_POST['equipe_nom']))
        {//si tous les champs ont été completer
             
            
@@ -15,16 +14,33 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
            $villeEquipe = htmlspecialchars($_POST['villeEquipe']);
            $five = htmlspecialchars($_POST['five']);
            $dateEquipe = htmlspecialchars($_POST['dateEquipe']);
-           $createur = htmlspecialchars($_POST['createur']);
-           
+          /* $createur = htmlspecialchars($_POST['createur']);*/
+           $membreId = htmlspecialchars($_SESSION['membreId']);
+           $equipe_nom = htmlspecialchars($_POST['equipe_nom']);
+           $capit = 1;
          
+           $checkEquipeNom = $bdd->prepare("Select equipe_nom from equipe where equipe_nom= ? ");
+            $checkEquipeNom->execute(array($equipe_nom));
+           $equipeexist = $checkEquipeNom->rowCount();
+           if($equipeexist == 1)
+           { 
+               $erreur = "Ce nom d'équipe existe déja";
+           }
+           else{
           
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, dateEquipe, createur) VALUES(?,?,?,?,?)");
-                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $dateEquipe, $createur));
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, dateEquipe, createur,equipe_nom) VALUES(?,?,?,?,?,?)");
+                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $dateEquipe, $membreId, $equipe_nom));//on rajoute dans la table equipe, la nouvele equipe
                   
-                  /* header('Location: .php');*/
+                    $getTeamId = $bdd->prepare("Select equipeId from equipe where equipe_nom= ? ");
+                    $getTeamId->execute(array($equipe_nom));
+                    $equipeId = $getTeamId->fetch();// ici, vu que l'équipe a été créer, on veut mtn récupérer l'id de l'équipe, grâce au nom de l'équipe, mais comme de base on connait pas l'id, et que on connais le nom, et qu'il sont lié, grâce au nom, on récupère l'id
+                    $_SESSION['equipeId'] = $equipeId['equipeId'];
+           
+                   $insertteam = $bdd->prepare("INSERT INTO equipe_membre_pair(equipeId, membreId, capitaine) VALUES(?,?,?)");
+                   $insertteam->execute(array($_SESSION['equipeId'], $membreId, $capit));//
+                 /* header('Location: .php');*/
                
-         
+           }
            
        }
     
@@ -137,6 +153,11 @@ else
                                 <div class="col-12">
                                     <div class="form-group">
                                         <input class="form-control" name="createur" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" placeholder="createur">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="equipe_nom" id="equipe_nom" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nom de l'équipe'" placeholder="Nom de l'équipe">
                                     </div>
                                 </div>
                                 
