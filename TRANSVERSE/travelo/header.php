@@ -55,6 +55,7 @@
                                                 <ul class="submenu">
                                                     <li><a href="travel_destination.php">Equipes existantes</a></li>
                                                     <li><a href="creerEquipe.php">Créer une équipe</a></li>
+                                                    <li><a href="mesEquipes.php">Mes équipe</a></li>
                                                 </ul>
                                             </li>
                                              <li><a href="profil.php">Profil</a></li>

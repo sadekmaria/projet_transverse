@@ -163,7 +163,7 @@ else
                             <img src="img/trip/2.png" alt="">
                         </div>
                         <div class="content">
-                            <p class="d-flex align-items-center"><?php echo $equipeData['villeEquipe']?><a href="travel_destination.html">  <?php echo $equipeData['nbrManquant'];?> Places</a> </p>
+                            <p class="d-flex align-items-center"><?php echo $equipeData['villeEquipe']?><a href="travel_destination.html">  Places</a> </p>
                             
                         </div>
                     </div>

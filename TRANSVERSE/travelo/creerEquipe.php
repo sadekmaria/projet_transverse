@@ -2,15 +2,17 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 
+$requser = $bdd->prepare("SELECT * FROM membre WHERE membreId =?");
+    $requser->execute(array($_SESSION['membreId']));
+    $user = $requser->fetch();
 
 if(isset($_POST['envoyer']))
     {
         
-       if(!empty($_POST['nbr']) AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['createur']) AND !empty($_POST['equipe_nom']))
+       if(!empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['equipe_nom']))
        {//si tous les champs ont été completer
             
            
-           $nbrManquant = htmlspecialchars($_POST['nbr']);
            $villeEquipe = htmlspecialchars($_POST['villeEquipe']);
            $five = htmlspecialchars($_POST['five']);
            $dateEquipe = htmlspecialchars($_POST['dateEquipe']);
@@ -19,7 +21,7 @@ if(isset($_POST['envoyer']))
            $equipe_nom = htmlspecialchars($_POST['equipe_nom']);
            $capit = 1;
          
-           $checkEquipeNom = $bdd->prepare("Select equipe_nom from equipe where equipe_nom= ? ");
+           $checkEquipeNom = $bdd->prepare("SELECT equipe_nom from equipe where equipe_nom= ? ");
             $checkEquipeNom->execute(array($equipe_nom));
            $equipeexist = $checkEquipeNom->rowCount();
            if($equipeexist == 1)
@@ -28,8 +30,8 @@ if(isset($_POST['envoyer']))
            }
            else{
           
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, dateEquipe, createur,equipe_nom) VALUES(?,?,?,?,?,?)");
-                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $dateEquipe, $membreId, $equipe_nom));//on rajoute dans la table equipe, la nouvele equipe
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, dateEquipe, createur,equipe_nom) VALUES(?,?,?,?,?)");
+                   $insertmbr->execute(array($villeEquipe, $five, $dateEquipe, $membreId, $equipe_nom));//on rajoute dans la table equipe, la nouvele equipe
                   
                     $getTeamId = $bdd->prepare("Select equipeId from equipe where equipe_nom= ? ");
                     $getTeamId->execute(array($equipe_nom));
@@ -135,18 +137,13 @@ else
                         <form class="form-contact contact_form" action="" method="post" novalidate="novalidate">
                             <div class="row">
                                 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="nbr" id="nbr" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'combien manquent'" placeholder="Combien de joueurs manquent ?">
-                                        
-                                    </div>
-                                </div>
+                                
                                 <div class="col-6">
                                     <div class="form-group">
                                         <input class="form-control valid" name="villeEquipe" id="villeEquipe" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Ville'" placeholder="Dans quelle ville voulez vous jouer ?">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <input class="form-control" name="five" id="five" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Nom du terrain/five ?">
                                     </div>
@@ -158,7 +155,7 @@ else
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="createur" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" placeholder="createur">
+                                        <input class="form-control" disabled="disabled" name="createur" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" placeholder="Créé par: <?php echo $user['pseudo']?>">
                                     </div>
                                 </div>
                                 <div class="col-12">

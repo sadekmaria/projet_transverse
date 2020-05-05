@@ -216,7 +216,7 @@ else
                                         </div>
                                         <div class="days">       
                                             <i class="fa fa-search"></i>
-                                                <a href="#">Recherche <?php echo $equipeData['nbrManquant'];?> joueurs</a>
+                                                <a href="#">Recherche joueurs</a>
                                             </div>
                                         
                                       

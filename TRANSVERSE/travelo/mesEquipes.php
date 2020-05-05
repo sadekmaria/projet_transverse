@@ -2,9 +2,8 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
     
-$query = 'SELECT * FROM membre';
+$equipe = $bdd->query('SELECT equipe.villeEquipe, equipe.five, equipe.createur, equipe.dateEquipe , equipe.equipe_nom, equipe_membre_pair.equipeId, equipe_membre_pair.membreId FROM equipe_membre_pair LEFT JOIN  equipe ON equipe.equipeId = equipe_membre_pair.equipeId WHERE membreId= "'.$_SESSION['membreId'].'" ');
 
-$membreAff = $bdd->query($query);
 
 ?>
 <!doctype html>
@@ -67,7 +66,7 @@ else
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <div class="form_area">
-                        <h3>Qui cherchez vous ?</h3>
+                        <h3>Quelle équipe cherchez vous ?</h3>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -95,7 +94,8 @@ else
 <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section_title text-center mb_70">
-                        <br/><br/><h3>Membres</h3>
+                        <br/><br/><h3>Mes équipes</h3>
+                        <p>Ici sont affichées les équipes auquelles vous faites partie</p>
                     </div>
                 </div>
             </div>
@@ -132,55 +132,51 @@ else
                         
                             <tr>
                                 <th>
-                                    User ID
+                                    Nom de l'équipe
                                 </th>
                                 <th>
-                                    Pseudo
+                                    Ville du match
                                 </th>
                                 <th>
-                                    Email
+                                    Lieu du match
                                 </th>
                                 <th> 
-                                    nom
+                                    Participants
                                 </th> 
                                 <th>
-                                    Prenom
+                                    Créateur
                                 </th>
                                 <th>
-                                    Ville
+                                    Date du match
                                 </th>
-                                <th>
-                                    Numéro de Téléphone
-                                </th>
+                                
                             </tr>
            <?php 
-            
-                while($membreData = $membreAff->fetch()){
+                
+                while($e = $equipe->fetch()){
                 
                     echo 
                         '                           
                             <tr>
                                 <td>
-                                    '.$membreData['membreId'] .'
+                                    '.$e['membreId'] .'
                                 </td>
                                 <td>
-                                    '. $membreData['pseudo'] .'
+                                    '. $e['pseudo'] .'
                                 </td>
                                 <td>
-                                    '.$membreData['email'].'
+                                    '.$e['email'].'
                                 </td>
                                 <td> 
-                                    '. $membreData['nom'].' 
+                                    '. $e['nom'].' 
                                 </td> 
                                 <td>
-                                    '.$membreData['prenom'].'
+                                    '.$e['prenom'].'
                                 </td>
                                 <td>
-                                    '.$membreData['villeMembre'].'
+                                    '.$e['villeMembre'].'
                                 </td>
-                                <td>
-                                    0'.$membreData['numTel'].'
-                                </td>
+                                
                             </tr>
                             
                        ';
@@ -301,8 +297,7 @@ else
          }
         });
     </script>
-   
-        
+    
 </body>
 
 </html>

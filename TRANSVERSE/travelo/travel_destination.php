@@ -205,8 +205,10 @@ else
                                 <div class="thumb">
                                     <img src="img/place/1.jpg" alt="">
                                     <form action="" method="post">
-                                        <a type="submit" href="#" class="prise" name="ajouter"><i class="fa fa-plus">
-                                            </i> M'ajouter à cette équipe</a>
+                                        <a type="submit" href="#" class="prise" name="ajouter">
+                                            <i class="fa fa-plus">
+                                            </i> M'ajouter à cette équipe
+                                        </a>
                                     </form>
                                 </div>
                                 <div class="place_info">
