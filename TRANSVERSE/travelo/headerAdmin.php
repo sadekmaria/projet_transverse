@@ -51,12 +51,7 @@
                                         <ul id="navigation">
                                             <li><a class="active" href="index.php">Accueil</a></li>
                                             <li><a href="verification.php">Vérification</a></li>
-                                            <li><a href="#">Equipes <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="travel_destination.php">Equipes existantes</a></li>
-                                                    <li><a href="creerEquipe.php">Créer une équipe</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="membre.php">Membres</a></li>
                                             
                                             <li><a href="deconnexion.php">Deconnexion</a></li>
                                         </ul>
