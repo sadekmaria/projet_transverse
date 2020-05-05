@@ -5,6 +5,53 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 $query = 'SELECT * FROM equipe';
 
 $equipeAff = $bdd->query($query);
+$equipeData = $equipeAff->fetch();
+
+if(isset($_POST['ajouter']))//si existe, donc que l'utilisateur a cliquer sur send
+    {
+    $requete = $bdd->query("SELECT equipeId FROM equipe_membre_pair WHERE equipeId='".$lequipe."'");
+    $count = $requete->fetchAll();
+    $reponse = count($count);
+    if($reponse<10){
+            
+        
+    
+           $membreId = htmlspecialchars($_SESSION['membreId']);
+           $equipe_nom = $equipeData['equipeId'];
+           $capit = 0;
+         
+           /*$checkEquipeNom = $bdd->prepare("Select equipe_nom from equipe where equipe_nom= ? ");
+            $checkEquipeNom->execute(array($equipe_nom));
+           $equipeexist = $checkEquipeNom->rowCount();
+           if($equipeexist == 1)
+           { 
+               $erreur = "Ce nom d'équipe existe déja";
+           }
+           else{
+          
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, dateEquipe, createur,equipe_nom) VALUES(?,?,?,?,?,?)");
+                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $dateEquipe, $membreId, $equipe_nom));//on rajoute dans la table equipe, la nouvele equipe
+                  
+                    $getTeamId = $bdd->prepare("Select equipeId from equipe where equipe_nom= ? ");
+                    $getTeamId->execute(array($equipe_nom));
+                    $equipeId = $getTeamId->fetch();// ici, vu que l'équipe a été créer, on veut mtn récupérer l'id de l'équipe, grâce au nom de l'équipe, mais comme de base on connait pas l'id, et que on connais le nom, et qu'il sont lié, grâce au nom, on récupère l'id
+                    $_SESSION['equipeId'] = $equipeId['equipeId'];*/
+           
+                   $insertteam = $bdd->prepare("INSERT INTO equipe_membre_pair(equipeId, membreId, capitaine) VALUES(?,?,?)");
+                   $insertteam->execute(array($_SESSION['equipeId'], $membreId, $capit));//
+                 /* header('Location: .php');*/
+               
+           
+           
+       }
+    
+        else
+        {
+            $erreur = "Vous n'avez pas été ajouté à l'équipe";
+        }
+
+
+}
 
 ?>
 <!doctype html>
@@ -40,9 +87,7 @@ $equipeAff = $bdd->query($query);
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+
 
    <?php
     
@@ -66,6 +111,12 @@ else
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <div class="form_area">
+                        <?php
+                                    if(isset($erreur))
+                                    {
+                                        include("errorMsg.php");
+                                    }
+                                ?>
                         <h3>Que cherchez vous ?</h3>
                     </div>
                 </div>
@@ -138,6 +189,7 @@ else
                 
                 <div class="col-lg-8">
                     <div class="row">
+                        
                 
 <?php
                 
@@ -145,18 +197,21 @@ else
                     
                     
                     
-                
+                $lequipe = $equipeData['equipeId']
 ?>
                 
                         <div class="col-lg-6 col-md-6">
                             <div class="single_place">
                                 <div class="thumb">
                                     <img src="img/place/1.jpg" alt="">
-                                    <a href="#" class="prise"><i class="fa fa-search"></i>Recherche <?php echo $equipeData['nbrManquant'];?> joueurs</a>
+                                    <form action="" method="post">
+                                        <a type="submit" href="#" class="prise" name="ajouter"><i class="fa fa-plus">
+                                            </i> M'ajouter à cette équipe</a>
+                                    </form>
                                 </div>
                                 <div class="place_info">
                                     <a href="destination_details.html"><h3>Dans la ville de <?php echo $equipeData['villeEquipe']?></h3></a>
-                                    <p><i class="fa fa-map-marker"> </i><?php echo $equipeData['five']?></p>
+                                    <p><i class="fa fa-map-marker"> </i> <?php echo $equipeData['five']?></p>
                                     <div class="rating_days d-flex justify-content-between">
                                         <!--<span class="d-flex justify-content-center align-items-center">
                                              <i class="fa fa-star"></i> 
@@ -170,7 +225,10 @@ else
                                             <i class="fa fa-calendar-o"></i>
                                             <a href="#"><?php echo $equipeData['dateEquipe']?></a>
                                         </div>
-                                        
+                                        <div class="days">
+                                            <i class="fa fa-users"></i>
+                                            <a href="#"><?php echo $equipeData['equipe_nom']?></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

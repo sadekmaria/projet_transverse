@@ -3,7 +3,7 @@ session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 
 
-if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur send
+if(isset($_POST['envoyer']))
     {
         
        if(!empty($_POST['nbr']) AND !empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['createur']) AND !empty($_POST['equipe_nom']))
@@ -46,7 +46,7 @@ if(isset($_POST['envoyer']))//si existe, donc que l'utilisateur a cliquer sur se
     
         else
         {
-            $erreur = "All the fields must me completed";
+            $erreur = "Tous les champs doivent être complétés";
         }
 
     }
@@ -124,6 +124,12 @@ else
                 <div class="row">
                     <div class="col-12">
                         <h2 class="contact-title">Remplissez les informations</h2>
+                        <?php
+                                    if(isset($erreur))
+                                    {
+                                        include("errorMsg.php");
+                                    }
+                                ?>
                     </div>
                     <div class="col-lg-8">
                         <form class="form-contact contact_form" action="" method="post" novalidate="novalidate">
@@ -166,12 +172,7 @@ else
                                 </div>
                             </div>
                             
-                              <?php
-                                    if(isset($erreur))
-                                    {
-                                        include("errorMsg.php");
-                                    }
-                                ?>
+                              
                         </form>
                     </div>
                     <div class="col-lg-3 offset-lg-1">
