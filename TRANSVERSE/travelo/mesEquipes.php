@@ -2,7 +2,10 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
     
-$equipe = $bdd->query('SELECT equipe.villeEquipe, equipe.five, equipe.createur, equipe.dateEquipe , equipe.equipe_nom, equipe_membre_pair.equipeId, equipe_membre_pair.membreId FROM equipe_membre_pair LEFT JOIN  equipe ON equipe.equipeId = equipe_membre_pair.equipeId WHERE membreId= "'.$_SESSION['membreId'].'" ');
+$equipe = $bdd->prepare('SELECT * FROM equipe_membre_pair LEFT JOIN  equipe ON equipe.equipeId = equipe_membre_pair.equipeId WHERE equipe_membre_pair.membreId= ? ');
+$equipe->execute(array($_SESSION['membreId']));
+
+echo($_SESSION['membreId'] . "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" . $equipe->rowCount() );
 
 
 ?>
@@ -162,19 +165,12 @@ else
                                     '.$e['membreId'] .'
                                 </td>
                                 <td>
-                                    '. $e['pseudo'] .'
+                                    '. $e['villeEquipe'] .'
                                 </td>
                                 <td>
-                                    '.$e['email'].'
+                                    '.$e['five'].'
                                 </td>
-                                <td> 
-                                    '. $e['nom'].' 
-                                </td> 
-                                <td>
-                                    '.$e['prenom'].'
-                                </td>
-                                <td>
-                                    '.$e['villeMembre'].'
+                                
                                 </td>
                                 
                             </tr>

@@ -8,6 +8,18 @@ $query = 'SELECT * FROM equipe';
 
 $equipeAff = $bdd->query($query);
 
+/*if(isset($_POST['valide']))
+                    {
+                        
+                       
+                        $upateQuery = 'UPDATE equipe SET valide = :valide WHERE equipeId = :equipeId';
+                      $updateReq = $bdd->prepare($updateQuery);
+                      $updateReq->execute(array(
+                      'valide' => 1,
+                      'equipeId' => $equipeData['equipeId']
+                      ));
+                    }*/
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -155,11 +167,7 @@ else
                 
                 while($equipeData = $equipeAff->fetch()){
                    
-            
-                  
-                /* NE MARCHE PAS 
-                
-                if(isset($_POST['valide']))
+            if(isset($_POST['valide']))
                     {
                         
                        
@@ -169,9 +177,7 @@ else
                       'valide' => 1,
                       'equipeId' => $equipeData['equipeId']
                       ));
-                    }*/
-                    
-                    
+            }
                 
 ?>
                 
@@ -191,8 +197,9 @@ else
                                     <?php
                                         }
                                     ?>
-                                                                           
-                                                <a href="#" class="prise" name="valide" value="valide"> <i class="fa fa-check-square-o"></i> Valider le match</a>
+                                                   <form action="" method="post">                      
+                                                <a href="valider.php?id=<?php echo($equipeData['equipeId']);?>" class="prise" name="valide" value="valide"> <i class="fa fa-check-square-o"></i> Valider le match</a>
+                                    </form>
                                     
                                 </div>
                                 

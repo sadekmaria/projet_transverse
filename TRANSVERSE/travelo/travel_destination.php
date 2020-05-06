@@ -7,51 +7,6 @@ $query = 'SELECT * FROM equipe';
 $equipeAff = $bdd->query($query);
 $equipeData = $equipeAff->fetch();
 
-if(isset($_POST['ajouter']))//si existe, donc que l'utilisateur a cliquer sur send
-    {
-    $requete = $bdd->query("SELECT equipeId FROM equipe_membre_pair WHERE equipeId='".$lequipe."'");
-    $count = $requete->fetchAll();
-    $reponse = count($count);
-    if($reponse<10){
-            
-        
-    
-           $membreId = htmlspecialchars($_SESSION['membreId']);
-           $equipe_nom = $equipeData['equipeId'];
-           $capit = 0;
-         
-           /*$checkEquipeNom = $bdd->prepare("Select equipe_nom from equipe where equipe_nom= ? ");
-            $checkEquipeNom->execute(array($equipe_nom));
-           $equipeexist = $checkEquipeNom->rowCount();
-           if($equipeexist == 1)
-           { 
-               $erreur = "Ce nom d'équipe existe déja";
-           }
-           else{
-          
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, nbrManquant, dateEquipe, createur,equipe_nom) VALUES(?,?,?,?,?,?)");
-                   $insertmbr->execute(array($villeEquipe, $five, $nbrManquant, $dateEquipe, $membreId, $equipe_nom));//on rajoute dans la table equipe, la nouvele equipe
-                  
-                    $getTeamId = $bdd->prepare("Select equipeId from equipe where equipe_nom= ? ");
-                    $getTeamId->execute(array($equipe_nom));
-                    $equipeId = $getTeamId->fetch();// ici, vu que l'équipe a été créer, on veut mtn récupérer l'id de l'équipe, grâce au nom de l'équipe, mais comme de base on connait pas l'id, et que on connais le nom, et qu'il sont lié, grâce au nom, on récupère l'id
-                    $_SESSION['equipeId'] = $equipeId['equipeId'];*/
-           
-                   $insertteam = $bdd->prepare("INSERT INTO equipe_membre_pair(equipeId, membreId, capitaine) VALUES(?,?,?)");
-                   $insertteam->execute(array($_SESSION['equipeId'], $membreId, $capit));//
-                 /* header('Location: .php');*/
-               
-           
-           
-       }
-    
-        else
-        {
-            $erreur = "Vous n'avez pas été ajouté à l'équipe";
-        }
-
-
-}
 
 ?>
 <!doctype html>
@@ -197,7 +152,7 @@ else
                     
                     
                     
-                $lequipe = $equipeData['equipeId']
+                $lequipe = $equipeData['equipeId'];
 ?>
                 
                         <div class="col-lg-6 col-md-6">
@@ -205,7 +160,7 @@ else
                                 <div class="thumb">
                                     <img src="img/place/1.jpg" alt="">
                                     <form action="" method="post">
-                                        <a type="submit" href="#" class="prise" name="ajouter">
+                                        <a type="submit" href="ajouter.php?id=<?php echo($lequipe);?>" class="prise" name="ajouter">
                                             <i class="fa fa-plus">
                                             </i> M'ajouter à cette équipe
                                         </a>
