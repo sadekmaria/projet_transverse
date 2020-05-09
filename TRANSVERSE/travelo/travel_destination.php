@@ -1,12 +1,32 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
+ 
+ $query = 'SELECT * FROM equipe';
+    $equipeAff = $bdd->query($query);
+    $equipeData = $equipeAff->fetch();
+if(isset($_POST['chercher']))
+{
+    $date = htmlspecialchars($_POST['date']);
+    $ville = htmlspecialchars($_POST['ville']);
+    if(!empty($_POST['date']) OR !empty($_POST['ville'])){
+        
+        
+        
+        $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE dateEquipe = ? OR villeEquipe = ?");
+                    $equipeAff->execute(array($date, $ville));
+                    $equipeData = $equipeAff->fetch();
     
-$query = 'SELECT * FROM equipe';
+}
+else{
+    $query = 'SELECT * FROM equipe';
+    $equipeAff = $bdd->query($query);
+    $equipeData = $equipeAff->fetch();
 
-$equipeAff = $bdd->query($query);
-$equipeData = $equipeAff->fetch();
+}
 
+
+}
 
 ?>
 <!doctype html>
@@ -77,17 +97,17 @@ else
                 </div>
                 <div class="col-lg-9">
                     <div class="search_wrap">
-                        <form class="search_form" action="#">
+                        <form class="search_form" action="#" method="post">
                             
                             <div class="input_field">
-                                <input id="datepicker" placeholder="Date">
+                                <input type="date" name="date" placeholder="Date">
                             </div>
                             <div class="input_field">
-                                <input id="text" placeholder="localisation">
+                                <input id="text" name="ville" placeholder="Ville">
                             </div>
                            
                             <div class="search_btn">
-                                <button class="boxed-btn4 " type="submit" >Chercher</button>
+                                <button class="boxed-btn4 " type="submit" name="chercher">Chercher</button>
                             </div>
                         </form>
                     </div>

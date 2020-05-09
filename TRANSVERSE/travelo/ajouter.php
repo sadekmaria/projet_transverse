@@ -31,6 +31,6 @@ else
         {
             $erreur = "Vous n'avez pas été ajouté à l'équipe";
         }
-//header("Location:travel_destination.php");
+header("Location:travel_destination.php");
 
 ?>

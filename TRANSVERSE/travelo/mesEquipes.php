@@ -5,8 +5,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 $equipe = $bdd->prepare('SELECT * FROM equipe_membre_pair LEFT JOIN  equipe ON equipe.equipeId = equipe_membre_pair.equipeId WHERE equipe_membre_pair.membreId= ? ');
 $equipe->execute(array($_SESSION['membreId']));
 
-echo($_SESSION['membreId'] . "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" . $equipe->rowCount() );
-
 
 ?>
 <!doctype html>
@@ -143,16 +141,15 @@ else
                                 <th>
                                     Lieu du match
                                 </th>
-                                <th> 
-                                    Participants
-                                </th> 
                                 <th>
                                     Créateur
                                 </th>
                                 <th>
                                     Date du match
                                 </th>
-                                
+                                <th>
+                                    Heure du match
+                                </th>
                             </tr>
            <?php 
                 
@@ -162,7 +159,7 @@ else
                         '                           
                             <tr>
                                 <td>
-                                    '.$e['membreId'] .'
+                                    '.$e['equipe_nom'] .'
                                 </td>
                                 <td>
                                     '. $e['villeEquipe'] .'
@@ -170,8 +167,16 @@ else
                                 <td>
                                     '.$e['five'].'
                                 </td>
-                                
+                                <td>
+                                    '. $e['createur'] .'
                                 </td>
+                                <td>
+                                    '.$e['dateEquipe'].'
+                                </td>
+                                <td>
+                                    '.$e['heure'].'
+                                </td>
+                                
                                 
                             </tr>
                             
@@ -293,6 +298,12 @@ else
          }
         });
     </script>
+    <script>
+function myFunction() {
+  var x = document.getElementById("myTime").value;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
     
 </body>
 

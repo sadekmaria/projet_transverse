@@ -9,14 +9,14 @@ $requser = $bdd->prepare("SELECT * FROM membre WHERE membreId =?");
 if(isset($_POST['envoyer']))
     {
         
-       if(!empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['equipe_nom']))
+       if(!empty($_POST['villeEquipe']) AND !empty($_POST['five']) AND !empty($_POST['dateEquipe']) AND !empty($_POST['heure']) AND !empty($_POST['equipe_nom']))
        {//si tous les champs ont été completer
             
            
            $villeEquipe = htmlspecialchars($_POST['villeEquipe']);
            $five = htmlspecialchars($_POST['five']);
            $dateEquipe = htmlspecialchars($_POST['dateEquipe']);
-          /* $createur = htmlspecialchars($_POST['createur']);*/
+           $heure = htmlspecialchars($_POST['heure']);
            $membreId = htmlspecialchars($_SESSION['membreId']);
            $equipe_nom = htmlspecialchars($_POST['equipe_nom']);
            $capit = 1;
@@ -30,8 +30,8 @@ if(isset($_POST['envoyer']))
            }
            else{
           
-                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, dateEquipe, createur,equipe_nom) VALUES(?,?,?,?,?)");
-                   $insertmbr->execute(array($villeEquipe, $five, $dateEquipe, $membreId, $equipe_nom));//on rajoute dans la table equipe, la nouvele equipe
+                   $insertmbr = $bdd->prepare("INSERT INTO equipe(villeEquipe, five, dateEquipe, heure, createur,equipe_nom) VALUES(?,?,?,?,?,?)");
+                   $insertmbr->execute(array($villeEquipe, $five, $dateEquipe, $heure, $membreId, $equipe_nom));//on rajoute dans la table equipe, la nouvele equipe
                   
                     $getTeamId = $bdd->prepare("Select equipeId from equipe where equipe_nom= ? ");
                     $getTeamId->execute(array($equipe_nom));
@@ -153,6 +153,11 @@ else
                                         <input class="form-control" name="dateEquipe" id="dateEquipe" type="date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'A quelle date ?'" placeholder="Nom du terrain/five ?">
                                     </div>
                                 </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input class="form-control valid" name="heure" type="time" id="myTime" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Heure: 00:00:00'" placeholder="Heure: 00:00:00">
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <input class="form-control" disabled="disabled" name="createur" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" placeholder="Créé par: <?php echo $user['pseudo']?>">
@@ -259,6 +264,12 @@ else
     
             });
         </script>
+    <script>
+function myFunction() {
+  var x = document.getElementById("myTime").value;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
     </body>
     
     </html>

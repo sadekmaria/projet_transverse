@@ -196,44 +196,44 @@ else
                                 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="nvpseudo" id="nbr" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'combien manquent'" value="<?php echo $user['pseudo']; ?>">
+                                        <input class="form-control valid" name="nvpseudo" id="nbr" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'pseudo'" value="<?php echo $user['pseudo']; ?>">
                                         
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="nvemail" id="villeEquipe" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Ville'" value="<?php echo $user['email']; ?>">
+                                        <input class="form-control valid" name="nvemail" id="villeEquipe" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" value="<?php echo $user['email']; ?>">
                                     </div>
                                 </div>
                                 
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="nvprenom" id="dateEquipe" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'A quelle date ?'" value="<?php echo $user['prenom']; ?>">
+                                        <input class="form-control" name="nvprenom" id="dateEquipe" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Prenom'" value="<?php echo $user['prenom']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="nvnom" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" value="<?php echo $user['nom']; ?>">
+                                        <input class="form-control" name="nvnom" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'nom'" value="<?php echo $user['nom']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="nvnumTel" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" value="0<?php echo $user['numTel']; ?>">
+                                        <input class="form-control" name="nvnumTel" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'numéro de téléphone'" value="0<?php echo $user['numTel']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="nvvilleMembre" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'createur'" value="<?php echo $user['villeMembre']; ?>">
+                                        <input class="form-control" name="nvvilleMembre" id="createur" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ville'" value="<?php echo $user['villeMembre']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="nvmdp1" id="five" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Mot de passe">
+                                        <input class="form-control" name="nvmdp1" id="five" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mot de passe'" placeholder="Mot de passe">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="nvmdp2" id="five" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Five'" placeholder="Confirmez votre Mot de passe">
+                                        <input class="form-control" name="nvmdp2" id="five" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'confirmez mot de passe'" placeholder="Confirmez votre Mot de passe">
                                     </div>
                                 </div>
                                 
