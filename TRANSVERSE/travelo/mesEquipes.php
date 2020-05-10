@@ -149,7 +149,7 @@ else
                                     Date du match
                                 </th>
                                 <th>
-                                    Heure du match
+                                    Me retirer
                                 </th>
                                 <th>
                                     Supprimer
@@ -179,10 +179,20 @@ else
                                     '.$count1['pseudo'].'
                                 </td>
                                 <td>
-                                    '.$e['dateEquipe'].'
+                                    '.$e['dateEquipe']." à ".$e['heure'].'
                                 </td>
                                 <td>
-                                    '.$e['heure'].'
+                                    '
+                ?>
+                                <form class="search_form" action="supprimerEq.php?id=<?php echo ($e['equipeId']); ?>" method="post">
+                                    <div class="search_btn">
+                                        
+                                            <button class="boxed-btn4 " type="submit" name="supprimer" >Me retirer</button>
+                                        
+                                    </div>
+                                </form>
+                                <?php 
+                                echo'
                                 </td>
                                 <td>
                                     ';

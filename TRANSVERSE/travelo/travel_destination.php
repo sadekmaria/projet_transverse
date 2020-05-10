@@ -252,14 +252,6 @@ else
                                     <a href="destination_details.html"><h3>Dans la ville de <?php echo $equipeData['villeEquipe']?></h3></a>
                                     <p><i class="fa fa-map-marker"> </i> <?php echo $equipeData['five']?></p>
                                     <div class="rating_days d-flex justify-content-between">
-                                        <!--<span class="d-flex justify-content-center align-items-center">
-                                             <i class="fa fa-star"></i> 
-                                             <i class="fa fa-star"></i> 
-                                             <i class="fa fa-star"></i> 
-                                             <i class="fa fa-star"></i> 
-                                             <i class="fa fa-star"></i>
-                                             <a href="#">(20 Review)</a>
-                                        </span>-->
                                         <div class="days">
                                             <i class="fa fa-calendar-o"></i>
                                             <a href="#"><?php echo $equipeData['dateEquipe']?> à <?php echo $equipeData['heure']?></a>
