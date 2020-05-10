@@ -7,18 +7,33 @@ $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
 $query = 'SELECT * FROM equipe';
 
 $equipeAff = $bdd->query($query);
+    if(isset($_POST['chercher']))
+    {
 
-/*if(isset($_POST['valide']))
-                    {
-                        
-                       
-                        $upateQuery = 'UPDATE equipe SET valide = :valide WHERE equipeId = :equipeId';
-                      $updateReq = $bdd->prepare($updateQuery);
-                      $updateReq->execute(array(
-                      'valide' => 1,
-                      'equipeId' => $equipeData['equipeId']
-                      ));
-                    }*/
+        $date = htmlspecialchars($_POST['date']);
+        $ville = htmlspecialchars($_POST['ville']);
+        /*--------- Ici on filtre lorsque la ville et la date sont inséré--------------*/
+        if(!empty($_POST['date']) AND !empty($_POST['ville'])){
+
+             $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE dateEquipe = ? and villeEquipe = ? and dateEquipe >=CURDATE()");
+                        $equipeAff->execute(array($date,$ville));            
+    }
+        /*--------- Ici on filtre lorsque la ville ou la date sont inséré--------------*/
+    elseif(!empty($_POST['date']) OR !empty($_POST['ville'])){
+        
+        $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE (dateEquipe = ? or villeEquipe = ?) and dateEquipe >=CURDATE()");
+                        $equipeAff->execute(array($date,$ville));
+    }
+        /*--------- Ici on affiche toutes les équipes car ni la ville ni la date n'a été entré--------------*/
+        else{
+
+        $query = "SELECT * FROM equipe where dateEquipe >=CURDATE()";
+        $equipeAff = $bdd->query($query);
+
+        }
+
+
+}
 
 ?>
 <!doctype html>
@@ -75,28 +90,37 @@ else
     
    
 
-    <!-- where_togo_area_start  -->
+     <!-- where_togo_area_start  -->
     <div class="where_togo_area">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <div class="form_area">
+                        <?php
+                                    if(isset($erreur))
+                                    {
+                                        include("errorMsg.php");
+                                    }
+                        elseif(isset($successMsg)){
+                            include("successMsg.php");
+                        }
+                                ?>
                         <h3>Que cherchez vous ?</h3>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="search_wrap">
-                        <form class="search_form" action="#">
+                        <form class="search_form" action="#" method="post">
                             
                             <div class="input_field">
-                                <input id="datepicker" placeholder="Date">
+                                <input type="date" name="date" >
                             </div>
                             <div class="input_field">
-                                <input id="text" placeholder="localisation">
+                                <input type="text" name="ville" placeholder="Ville">
                             </div>
                            
                             <div class="search_btn">
-                                <button class="boxed-btn4 " type="submit" >Chercher</button>
+                                <button class="boxed-btn4 " type="submit" name="chercher">Chercher</button>
                             </div>
                         </form>
                     </div>
@@ -105,6 +129,7 @@ else
         </div>
     </div>
     <!-- where_togo_area_end  -->
+
 
 <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -165,7 +190,14 @@ else
                 
 <?php
                 
-                while($equipeData = $equipeAff->fetch()){
+                 while(!empty($equipeData = $equipeAff->fetch())){
+           $nombre=$equipeData['equipeId'];
+                     
+    $requete = $bdd->query("SELECT equipeId FROM equipe_membre_pair WHERE equipeId='".$nombre."'");
+    $count = $requete->fetchAll();
+    $num = count($count);
+
+                     
                    
             if(isset($_POST['valide']))
                     {
@@ -218,12 +250,12 @@ else
                                         </span>-->
                                         <div class="days">
                                             <i class="fa fa-calendar-o"></i>
-                                            <a href="#"><?php echo $equipeData['dateEquipe']?></a>
+                                            <a href="#"><?php echo $equipeData['dateEquipe']?> à <?php echo $equipeData['heure']?></a>
                                             
                                         </div>
                                         <div class="days">       
                                             <i class="fa fa-search"></i>
-                                                <a href="#">Recherche joueurs</a>
+                                                <a href="#"><?php echo $num?>/10</a>
                                             </div>
                                         
                                       

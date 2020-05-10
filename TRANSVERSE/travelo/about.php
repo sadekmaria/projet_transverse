@@ -180,7 +180,7 @@ else
     </div>
 
 
-    <!-- testimonial_area  -->
+    <!-- testimonial_area 
     <div class="testimonial_area">
         <div class="container">
             <div class="row">
@@ -236,7 +236,7 @@ else
             </div>
         </div>
     </div>
-    <!-- /testimonial_area  -->
+    testimonial_area  -->
 
 
  

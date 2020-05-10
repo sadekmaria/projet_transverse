@@ -2,9 +2,9 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
  
- $query = 'SELECT * FROM equipe where dateEquipe >= CURDATE() ';
+ $query = 'SELECT * FROM equipe where dateEquipe >= CURDATE() ';//afficher uniquement les matchs qui ne sont pas encore passé
     $equipeAff = $bdd->query($query);
-
+//afficher les message lors de l'ajout a une équipe, si j'ai été ajouté ou non et pq
 if(isset($_GET['successMsg']) AND $_GET['successMsg']==1){
     
     $successMsg="Vous avez été ajouté à l'équipe";
@@ -17,22 +17,25 @@ elseif(isset($_GET['erreur']) AND $_GET['erreur']==1)
 {
     $erreur = "Vous existez déjà dans cette équipe";
 }
-
+//------------------filtrer------------
     if(isset($_POST['chercher']))
     {
 
         $date = htmlspecialchars($_POST['date']);
         $ville = htmlspecialchars($_POST['ville']);
+        /*--------- Ici on filtre lorsque la ville et la date sont inséré--------------*/
         if(!empty($_POST['date']) AND !empty($_POST['ville'])){
 
              $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE dateEquipe = ? and villeEquipe = ? and dateEquipe >=CURDATE()");
                         $equipeAff->execute(array($date,$ville));            
     }
+        /*--------- Ici on filtre lorsque la ville ou la date sont inséré--------------*/
     elseif(!empty($_POST['date']) OR !empty($_POST['ville'])){
         
         $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE (dateEquipe = ? or villeEquipe = ?) and dateEquipe >=CURDATE()");
                         $equipeAff->execute(array($date,$ville));
     }
+        /*--------- Ici on affiche toutes les équipes car ni la ville ni la date n'a été entré--------------*/
         else{
 
         $query = "SELECT * FROM equipe where dateEquipe >=CURDATE()";
@@ -208,7 +211,11 @@ else
                 
                 while(!empty($equipeData = $equipeAff->fetch())){
                 
-                    
+                    $nombre=$equipeData['equipeId'];
+                     
+    $requete = $bdd->query("SELECT equipeId FROM equipe_membre_pair WHERE equipeId='".$nombre."'");
+    $count = $requete->fetchAll();
+    $num = count($count);
                     
                 $lequipe = $equipeData['equipeId'];
 ?>
@@ -217,7 +224,19 @@ else
                             <div class="single_place">
                                 <div class="thumb">
                                     <div class="container2">
+                                        <?php 
+                                        if(isset($equipeData['valide']) AND $equipeData['valide'])
+                                        {
+                                    ?>
                                     <img src="img/place/1.jpg" alt="" class="image">
+                                       <?php
+                                        }else
+                                        {
+                                    ?>
+                                         <img src="img/place/noir.jpg" alt="">
+                                    <?php
+                                        }
+                                    ?>
                                     <div class="overlay2">
                                         <div class="text2">Afficher TOUS LES JOUEURS rrr dddddd zzzzzzzzzzz ssssssssssss ddddddddddddd ffffffffffff vvvvvvvvvvvvv     ssssssssssssssss </div>
                                     </div>
@@ -247,7 +266,7 @@ else
                                         </div>
                                         <div class="days">
                                             <i class="fa fa-users"></i>
-                                            <a href="#"><?php echo $equipeData['equipe_nom']?></a>
+                                            <a href="#"><?php echo $equipeData['equipe_nom']." ".$num."/10" ?></a>
                                         </div>
                                     </div>
                                 </div>
