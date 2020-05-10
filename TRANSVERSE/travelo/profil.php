@@ -56,7 +56,7 @@ if(isset($_SESSION['membreId']))
         $nvvilleMembre = htmlspecialchars($_POST['nvvilleMembre']);
         $insertvilleMembre = $bdd->prepare("UPDATE membre SET villeMembre = ? WHERE membreId = ?");
         $insertvilleMembre->execute(array($nvvilleMembre, $_SESSION['membreId']));
-        $success = "Votre ville a été modifié";
+        $successMsg = "Votre ville a été modifié";
     }
     
     
@@ -183,7 +183,7 @@ else
     include("errorMsg.php");
              ?><br/><br/><?php }
                         
-                        if(isset($success)){
+                        if(isset($successMsg)){
         
     include("successMsg.php");
              ?><br/><br/><?php }

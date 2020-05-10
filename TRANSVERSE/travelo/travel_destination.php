@@ -2,33 +2,51 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=foot', 'root', '');
  
- $query = 'SELECT * FROM equipe';
+ $query = 'SELECT * FROM equipe where dateEquipe >= CURDATE() ';
     $equipeAff = $bdd->query($query);
-    $equipeData = $equipeAff->fetch();
-if(isset($_POST['chercher']))
-{
-    $date = htmlspecialchars($_POST['date']);
-    $ville = htmlspecialchars($_POST['ville']);
-    if(!empty($_POST['date']) OR !empty($_POST['ville'])){
-        
-        
-        
-        $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE dateEquipe = ? OR villeEquipe = ?");
-                    $equipeAff->execute(array($date, $ville));
-                    $equipeData = $equipeAff->fetch();
-    
-}
-else{
-    $query = 'SELECT * FROM equipe';
-    $equipeAff = $bdd->query($query);
-    $equipeData = $equipeAff->fetch();
 
+if(isset($_GET['successMsg']) AND $_GET['successMsg']==1){
+    
+    $successMsg="Vous avez été ajouté à l'équipe";
 }
+elseif(isset($_GET['erreur']) AND $_GET['erreur']==1)
+{
+    $erreur = "Vous n'avez pas été ajouté à l'équipe";
+}
+    elseif(isset($_GET['erreur']) AND $_GET['erreur']==2)
+{
+    $erreur = "Vous existez déjà dans cette équipe";
+}
+
+    if(isset($_POST['chercher']))
+    {
+
+        $date = htmlspecialchars($_POST['date']);
+        $ville = htmlspecialchars($_POST['ville']);
+        if(!empty($_POST['date']) AND !empty($_POST['ville'])){
+
+             $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE dateEquipe = ? and villeEquipe = ? and dateEquipe >=CURDATE()");
+                        $equipeAff->execute(array($date,$ville));            
+    }
+    elseif(!empty($_POST['date']) OR !empty($_POST['ville'])){
+        
+        $equipeAff = $bdd->prepare("SELECT * FROM equipe WHERE (dateEquipe = ? or villeEquipe = ?) and dateEquipe >=CURDATE()");
+                        $equipeAff->execute(array($date,$ville));
+    }
+        else{
+
+        $query = "SELECT * FROM equipe where dateEquipe >=CURDATE()";
+        $equipeAff = $bdd->query($query);
+
+        }
 
 
 }
 
 ?>
+
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -61,6 +79,29 @@ else{
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
+    <style>
+    .overlay2 {
+  position: absolute;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.container2:hover .overlay2 {
+  opacity: 1;
+}
+
+.text2 {
+  color: blue;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-10%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+</style>
 <body>
 
 
@@ -91,6 +132,9 @@ else
                                     {
                                         include("errorMsg.php");
                                     }
+                        elseif(isset($successMsg)){
+                            include("successMsg.php");
+                        }
                                 ?>
                         <h3>Que cherchez vous ?</h3>
                     </div>
@@ -100,10 +144,10 @@ else
                         <form class="search_form" action="#" method="post">
                             
                             <div class="input_field">
-                                <input type="date" name="date" placeholder="Date">
+                                <input type="date" name="date" >
                             </div>
                             <div class="input_field">
-                                <input id="text" name="ville" placeholder="Ville">
+                                <input type="text" name="ville" placeholder="Ville">
                             </div>
                            
                             <div class="search_btn">
@@ -123,7 +167,7 @@ else
             <div class="row">
                 <div class="col-lg-4">
                     <div class="filter_result_wrap">
-                        <h3>Filter Result</h3>
+                        <h3>Filtre</h3>
                         <div class="filter_bordered">
                             <div class="filter_inner">
                                 <div class="row">
@@ -139,21 +183,12 @@ else
                                         </div>
                                         
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div class="range_slider_wrap">
-                                            <span class="range">Proche de chez moi</span>
-                                            <div id="slider-range"></div>
-                                            <br/>
-                                        </div>
-                                    </div>
                                 </div>
 
 
                             </div>
 
-                            <div class="reset_btn">
-                                <button class="boxed-btn4" type="submit">Filtrer</button>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -167,9 +202,12 @@ else
                         
                 
 <?php
+                        
+                     
+                        
                 
-                while($equipeData = $equipeAff->fetch()){
-                    
+                while(!empty($equipeData = $equipeAff->fetch())){
+                
                     
                     
                 $lequipe = $equipeData['equipeId'];
@@ -178,7 +216,12 @@ else
                         <div class="col-lg-6 col-md-6">
                             <div class="single_place">
                                 <div class="thumb">
-                                    <img src="img/place/1.jpg" alt="">
+                                    <div class="container2">
+                                    <img src="img/place/1.jpg" alt="" class="image">
+                                    <div class="overlay2">
+                                        <div class="text2">Afficher TOUS LES JOUEURS rrr dddddd zzzzzzzzzzz ssssssssssss ddddddddddddd ffffffffffff vvvvvvvvvvvvv     ssssssssssssssss </div>
+                                    </div>
+                                    </div>
                                     <form action="" method="post">
                                         <a type="submit" href="ajouter.php?id=<?php echo($lequipe);?>" class="prise" name="ajouter">
                                             <i class="fa fa-plus">
@@ -200,7 +243,7 @@ else
                                         </span>-->
                                         <div class="days">
                                             <i class="fa fa-calendar-o"></i>
-                                            <a href="#"><?php echo $equipeData['dateEquipe']?></a>
+                                            <a href="#"><?php echo $equipeData['dateEquipe']?> à <?php echo $equipeData['heure']?></a>
                                         </div>
                                         <div class="days">
                                             <i class="fa fa-users"></i>

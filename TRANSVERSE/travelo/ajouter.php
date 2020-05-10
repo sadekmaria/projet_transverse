@@ -6,17 +6,18 @@ $query = 'SELECT * FROM equipe';
 
 $equipeAff = $bdd->query($query);
 $equipeData = $equipeAff->fetch();
-
+$membreId = htmlspecialchars($_SESSION['membreId']);
 
 
     $requete = $bdd->query("SELECT equipeId FROM equipe_membre_pair WHERE equipeId='".$_GET['id']."'");
     $count = $requete->fetchAll();
     $reponse = count($count);
+
+    $requete1 = $bdd->query("SELECT membreId FROM equipe_membre_pair WHERE equipeId='".$_GET['id']."' AND membreId= '".$membreId."' ");
+    $count1 = $requete1->fetchAll();
+if(empty($count1)){
     if($reponse<10){
             
-        
-    
-           $membreId = htmlspecialchars($_SESSION['membreId']);
            $equipe_nom = $equipeData['equipeId'];
            $capit = 0;
          
@@ -26,11 +27,19 @@ $equipeData = $equipeAff->fetch();
                    $insertteam->execute(array($_GET['id'], $membreId, $capit));//
                  /* header('Location: .php');*/
            
+        header("Location:travel_destination.php?successMsg=1");
+
        }
 else
         {
-            $erreur = "Vous n'avez pas été ajouté à l'équipe";
+            
+    header("Location:travel_destination.php?erreur=1");
+
         }
-header("Location:travel_destination.php");
+}
+else{
+    
+    header("Location:travel_destination.php?erreur=2");
+}
 
 ?>

@@ -97,6 +97,7 @@ else
                     <div class="section_title text-center mb_70">
                         <br/><br/><h3>Mes équipes</h3>
                         <p>Ici sont affichées les équipes auquelles vous faites partie</p>
+                        <p>Vous pouvez supprimer une équipe lorsque vous en êtes le créateur</p>
                     </div>
                 </div>
             </div>
@@ -142,7 +143,7 @@ else
                                     Lieu du match
                                 </th>
                                 <th>
-                                    Créateur
+                                    Capitaine
                                 </th>
                                 <th>
                                     Date du match
@@ -150,10 +151,17 @@ else
                                 <th>
                                     Heure du match
                                 </th>
+                                <th>
+                                    Supprimer
+                                </th>
                             </tr>
            <?php 
                 
                 while($e = $equipe->fetch()){
+                    
+                    
+                        $requete1 = $bdd->query("SELECT pseudo FROM membre WHERE membreId= '".$e['createur']."' ");
+                        $count1 = $requete1->fetch();
                 
                     echo 
                         '                           
@@ -168,13 +176,28 @@ else
                                     '.$e['five'].'
                                 </td>
                                 <td>
-                                    '. $e['createur'] .'
+                                    '.$count1['pseudo'].'
                                 </td>
                                 <td>
                                     '.$e['dateEquipe'].'
                                 </td>
                                 <td>
                                     '.$e['heure'].'
+                                </td>
+                                <td>
+                                    ';
+                
+                if($e['createur'] == $_SESSION['membreId']){
+                ?>
+                                <form class="search_form" action="supprimer.php?id=<?php echo ($e['equipeId']); ?>" method="post">
+                                    <div class="search_btn">
+                                        
+                                            <button class="boxed-btn4 " type="submit" name="supprimer" >Supprimer</button>
+                                        
+                                    </div>
+                                </form>
+                                <?php }
+                    echo'
                                 </td>
                                 
                                 
