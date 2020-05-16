@@ -182,21 +182,18 @@ else
                             <span class="contact-info__icon"><i class="ti-home"></i></span>
                             <div class="media-body">
                                 <h3>Renseignez un terrain proche de chez vous</h3>
-                                <p>Rosemead, CA 91770</p>
                             </div>
                         </div>
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                             <div class="media-body">
                                 <h3>Les joueurs auront accès a votre numéro</h3>
-                                <p>Mon to Fri 9am to 6pm</p>
                             </div>
                         </div>
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-email"></i></span>
                             <div class="media-body">
                                 <h3>Et à votre email</h3>
-                                <p>Send us your query anytime!</p>
                             </div>
                         </div>
                     </div>

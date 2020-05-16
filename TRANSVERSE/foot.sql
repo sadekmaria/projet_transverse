@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 10 Mai 2020 à 20:09
+-- Généré le :  Sam 16 Mai 2020 à 15:35
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -36,28 +36,26 @@ CREATE TABLE IF NOT EXISTS `equipe` (
   `equipe_nom` varchar(255) NOT NULL,
   `heure` time NOT NULL,
   PRIMARY KEY (`equipeId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `equipe`
 --
 
 INSERT INTO `equipe` (`equipeId`, `villeEquipe`, `five`, `createur`, `dateEquipe`, `valide`, `equipe_nom`, `heure`) VALUES
-(3, 'Sucy en Brie', 'stade de Sucy', '2', '2020-05-09', 1, 'EFREI', '00:00:00'),
-(4, 'Villejuif', 'LÃ©o Lagrange', '4', '2020-06-04', 1, 'EFREI PARIS', '00:00:00'),
-(5, 'CrÃ©teil', 'Stade de CrÃ©teil', '2', '2020-04-27', 0, 'MALAYSIA', '00:00:00'),
-(6, 'Vitry', 'stade de Vitry', '2', '2020-04-25', 0, 'OM', '00:00:00'),
-(7, 'Paris', 'Stade Emile Antoine', '2', '2020-04-26', 0, 'PSG', '00:00:00'),
-(8, 'Beyrouth', 'stade', '9', '2020-05-16', 0, 'BARCA', '00:00:00'),
-(9, 'Sucy en Brie', 'stade de Vitry', '2', '2020-05-17', 0, 'BARCELONE', '00:00:00'),
-(16, 'Sucy en Brie', 'stade de Vitry', '2', '2020-05-10', 0, 'PARIS', '00:00:00'),
-(17, 'Cergy', 'stade de cergy', '6', '2020-05-30', 0, 'CERGYZOO', '00:00:00'),
-(18, 'Paris', 'stade de paris', '8', '2020-05-16', 0, 'Paris s', '00:00:00'),
-(19, 'limoge', 'stade de limoge', '9', '2020-05-16', 0, 'LIMOGE', '00:00:00'),
-(20, 'Thiais', 'stade de thiais', '2', '2020-05-12', 0, 'Thiais', '00:00:00'),
-(21, 'rien', 'rien', '2', '2020-05-16', 0, 'rien', '12:30:22'),
-(22, 'wallou', 'wallou', '2', '2020-05-16', 0, 'wallou', '00:00:00'),
-(23, 'serine', 'serine', '2', '2020-05-16', 0, 'serine', '15:30:00');
+(3, 'Sucy en Brie', 'stade de Sucy', '2', '2020-05-09', 1, 'EFREI', '23:35:00'),
+(4, 'Villejuif', 'LÃ©o Lagrange', '4', '2020-06-04', 1, 'EFREI PARIS', '14:00:00'),
+(5, 'CrÃ©teil', 'Stade de CrÃ©teil', '2', '2020-04-27', 0, 'MALAYSIA', '15:30:00'),
+(6, 'Vitry', 'stade de Vitry', '2', '2020-04-25', 0, 'OM', '12:00:00'),
+(7, 'Paris', 'Stade Emile Antoine', '2', '2020-04-26', 1, 'PSG', '11:00:00'),
+(8, 'Beyrouth', 'stade', '9', '2020-05-16', 1, 'BARCA', '14:30:00'),
+(9, 'Sucy en Brie', 'stade de Vitry', '2', '2020-05-17', 0, 'BARCELONE', '19:00:00'),
+(16, 'Sucy en Brie', 'stade de Vitry', '2', '2020-05-10', 0, 'PARIS', '16:00:00'),
+(17, 'Cergy', 'stade de cergy', '6', '2020-05-30', 0, 'CERGYZOO', '18:45:00'),
+(18, 'Paris', 'stade de paris', '8', '2020-05-16', 0, 'Paris s', '17:55:00'),
+(19, 'limoge', 'stade de limoge', '9', '2020-05-16', 1, 'LIMOGE', '17:00:00'),
+(20, 'Marseille', 'stade de marseille', '7', '2020-05-31', 0, 'Marseille', '15:00:00'),
+(22, 'Vitry', 'leo lagrange', '10', '2020-05-23', 1, 'julien''s', '15:30:00');
 
 -- --------------------------------------------------------
 
@@ -78,21 +76,16 @@ CREATE TABLE IF NOT EXISTS `equipe_membre_pair` (
 --
 
 INSERT INTO `equipe_membre_pair` (`equipeId`, `membreId`, `capitaine`) VALUES
-(4, 7, 0),
-(5, 2, 0),
+(3, 2, 1),
+(6, 2, 1),
+(7, 2, 1),
 (7, 8, 0),
-(8, 9, 0),
 (9, 2, 1),
 (16, 2, 1),
 (17, 6, 1),
 (18, 8, 1),
-(19, 9, 1),
-(20, 2, 1),
-(20, 7, 0),
-(21, 2, 1),
-(22, 2, 1),
-(22, 7, 0),
-(23, 2, 1);
+(20, 7, 1),
+(22, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `membre` (
   `numTel` int(10) NOT NULL,
   `villeMembre` varchar(255) NOT NULL,
   PRIMARY KEY (`membreId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `membre`
@@ -126,7 +119,8 @@ INSERT INTO `membre` (`membreId`, `pseudo`, `email`, `mdp`, `admin`, `prenom`, `
 (6, 'maria', 'maria@hotmail.fr', 'e21fc56c1a272b630e0d1439079d0598cf8b8329', 0, 'maria', 'sadek', 654321222, 'Sucy en Brie'),
 (7, 'julie', 'julie@hotmail.fr', '8d32267b6b4884cf35adeaccde2b6857ae11aace', 0, 'julie', 'ju', 766554433, 'Sucy en Brie'),
 (8, 'Sandra', 'sandra@hotmail.fr', 'cad1524360e58851cd0ae1e82b75ff5283474667', 0, 'Sandra', 'sandra', 766554433, 'Paris'),
-(9, 'Alex', 'alex@hotmail.fr', '60c6d277a8bd81de7fdde19201bf9c58a3df08f4', 0, 'Alex', 'alex', 766554433, 'limoge');
+(9, 'Alex', 'alex@hotmail.fr', '60c6d277a8bd81de7fdde19201bf9c58a3df08f4', 0, 'Alex', 'alex', 766554433, 'limoge'),
+(10, 'julien', 'julien@hotmail.fr', '5c682c2d1ec4073e277f9ba9f4bdf07e5794dabe', 0, 'Julien', 'ju', 877665544, 'Vitry');
 
 --
 -- Contraintes pour les tables exportées

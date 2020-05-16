@@ -238,7 +238,7 @@ else
                                         }
                                     ?>
                                     <div class="overlay2">
-                                        <div class="text2">Afficher TOUS LES JOUEURS rrr dddddd zzzzzzzzzzz ssssssssssss ddddddddddddd ffffffffffff vvvvvvvvvvvvv     ssssssssssssssss </div>
+                                        <div class="text2"><!-- nom des membres de l'équipe--></div>
                                     </div>
                                     </div>
                                     <form action="" method="post">
